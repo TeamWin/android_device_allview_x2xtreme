@@ -1,6 +1,6 @@
 # Source Code for Allview X2 Soul Xtreme
 #New, smaller device tree for Allview X2 Soul Xtreme
-Be careful, it's not tested one!
+This tree seems to be working (I mean compiling without errors), compiled .zip won't boot
 
 IT'S BEEN MADE FROM SCRATCH!
 

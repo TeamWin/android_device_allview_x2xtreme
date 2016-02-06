@@ -31,6 +31,14 @@ TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
 TARGET_IS_64_BIT := true
 
+#TWRP - only if you have ../bootable/recovery replaced with TWRP source
+TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/root/init.rc
+#Don't change resolution as it won't compile twrp -> that is highest possible
+DEVICE_RESOLUTION := 1080x1920
+RECOVERY_GRAPHICS_USE_LINELENGTH := true 
+TARGET_PREBUILT_RECOVERY_KERNEL := $(LOCAL_PATH)/kernel
+
+
 #Bootloader related
 TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := mt6796

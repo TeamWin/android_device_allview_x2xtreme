@@ -2,8 +2,8 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
 # The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
-$(call inherit-product, device/allview/x2xtreme/vendor/copyfiles.mk)
-$(call inherit-product, vendor/allview/x2xtreme/x2xtreme-vendor-blobs.mk)
+#$(call inherit-product, device/allview/x2xtreme/vendor/copyfiles.mk)
+#$(call inherit-product, vendor/allview/x2xtreme/x2xtreme-vendor-blobs.mk)
 
 LOCAL_PATH := device/allview/x2xtreme
 
@@ -15,13 +15,17 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
+#twrp.fstab
+#PRODUCT_COPY_FILES += \
+#   $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab 
+ 
 PRODUCT_COPY_FILES += \
    $(LOCAL_KERNEL):kernel
 
 #Custom mkbootimg files
-PRODUCT_PACKAGES += \
-    mkbootimg-gionee \
-    unpackbootimg-gionee
+#PRODUCT_PACKAGES += \
+#    mkbootimg-gionee \
+#    unpackbootimg-gionee
 
 #Ramdisk - check before building!!!
 PRODUCT_COPY_FILES += \
@@ -30,8 +34,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/root/init.trace.rc:root/init.trace.rc \
     $(LOCAL_PATH)/root/init.trustonic.rc:root/init.trustonic.rc \
     $(LOCAL_PATH)/root/init.usb.rc:root/init.usb.rc \
-    $(LOCAL_PATH)/root/init.zygote32.rc:root/init.zygote32.rc \
-    $(LOCAL_PATH)/root/init.zygote64_32.rc:root/init.zygote64_32.rc \
     $(LOCAL_PATH)/root/ueventd.rc:root/ueventd.rc \
     $(LOCAL_PATH)/root/enableswap.sh:root/enableswap.sh \
     $(LOCAL_PATH)/root/factory_init.project.rc:root/factory_init.project.rc \

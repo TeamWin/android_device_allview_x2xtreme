@@ -1,6 +1,8 @@
 # Source Code for Allview X2 Soul Xtreme
 #New, smaller device tree for Allview X2 Soul Xtreme
-This tree seems to be working (I mean compiling without errors), compiled .zip won't boot
+This tree seems to be working (I mean compiling without errors), compiled .zip won't boot.
+
+This tree allows you to compile TWRP v3.0.0-0
 
 IT'S BEEN MADE FROM SCRATCH!
 

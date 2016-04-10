@@ -31,18 +31,18 @@ TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
 TARGET_IS_64_BIT := true
 
-#TWRP - only if you have ../bootable/recovery replaced with TWRP source
+#TWRP
 TW_NO_USB_STORAGE := false
 TW_NEVER_UNMOUNT_SYSTEM := true
 TARGET_CPU_SMP := true
 TW_NO_SCREEN_BLANK := true
 RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
-#Seems that those below are not needed
-#TW_INTERNAL_STORAGE_PATH := "/data/media/0"
-#TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-#TW_EXTERNAL_STORAGE_PATH := '/external_sd"
-#TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := '/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/root/init.rc
 DEVICE_RESOLUTION := 1080x1920
 RECOVERY_GRAPHICS_USE_LINELENGTH := true 

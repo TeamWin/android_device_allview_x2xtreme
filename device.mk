@@ -1,13 +1,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
-# The gps config appropriate for this device
 $(call inherit-product, device/common/gps/gps_us_supl.mk)
-#$(call inherit-product, device/allview/x2xtreme/vendor/copyfiles.mk)
-#$(call inherit-product, vendor/allview/x2xtreme/x2xtreme-vendor-blobs.mk)
 
 LOCAL_PATH := device/allview/x2xtreme
-
-TARGET_OTA_ASSERT_DEVICE := x2xtreme
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
 	LOCAL_KERNEL := $(LOCAL_PATH)/kernel
@@ -15,19 +9,10 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
-#twrp.fstab
-#PRODUCT_COPY_FILES += \
-#   $(LOCAL_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab 
- 
 PRODUCT_COPY_FILES += \
    $(LOCAL_KERNEL):kernel
 
-#Custom mkbootimg files
-#PRODUCT_PACKAGES += \
-#    mkbootimg-gionee \
-#    unpackbootimg-gionee
-
-#Ramdisk - check before building!!!
+#Ramdisk
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/root/init.environ.rc:root/init.environ.rc \
     $(LOCAL_PATH)/root/init.mt6595.rc:root/init.mt6595 \
@@ -35,7 +20,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/root/init.trustonic.rc:root/init.trustonic.rc \
     $(LOCAL_PATH)/root/init.usb.rc:root/init.usb.rc \
     $(LOCAL_PATH)/root/ueventd.rc:root/ueventd.rc \
-    $(LOCAL_PATH)/root/enableswap.sh:root/enableswap.sh \
     $(LOCAL_PATH)/root/factory_init.project.rc:root/factory_init.project.rc \
     $(LOCAL_PATH)/root/factory_init.rc:root/factory_init.rc \
     $(LOCAL_PATH)/root/fstab.mt6795:root/fstab.mt6795 \

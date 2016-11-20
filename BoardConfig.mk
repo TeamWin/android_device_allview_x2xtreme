@@ -1,26 +1,23 @@
-#Starting BoardConifg.mk for x2xtreme.
-#Everything written here is fo Allview X2 Soul Xtreme (known as Blu Pure XL or Gionee Elife E8).
-#Check every line before staring your build machine!
-#Good luck!
-#
-
-#Your path etc.
+# mt6795 platform boardconfig
 LOCAL_PATH := device/allview/x2xtreme
--include vendor/allview/x2xtreme/BoardConfigVendor.mk
 
 USE_CAMERA_STUB := true
-#TARGET_PROVIDES_INIT_RC := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
+TARGET_PROVIDES_INIT_RC := true
 
-#CPU args
+# Platform
+ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_BOARD_PLATFORM := mt6795
+TARGET_NO_BOOTLOADER := true
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_NO_FACTORYIMAGE := true
+
+# Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 := 
+TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
 TARGET_CPU_SMP := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
-TARGET_CPU_CORTEX_A53 := true
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
@@ -29,67 +26,77 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
-TARGET_IS_64_BIT := true
 
-#TWRP
-TW_NO_USB_STORAGE := false
-TW_NEVER_UNMOUNT_SYSTEM := true
-TARGET_CPU_SMP := true
-TW_NO_SCREEN_BLANK := true
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_HAS_NO_REAL_SDCARD := true
-RECOVERY_VARIANT := twrp
-TW_INTERNAL_STORAGE_PATH := "/data/media/0"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := '/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/root/init.rc
-TW_THEME := portrait_hdpi
-RECOVERY_GRAPHICS_USE_LINELENGTH := true 
-TARGET_PREBUILT_RECOVERY_KERNEL := $(LOCAL_PATH)/kernel
+TARGET_CPU_CORTEX_A53 := true
 
-#Assert devices
-TARGET_OTA_ASSERT_DEVICE := x2xtreme,purexl,PURE_XL,X2_Soul_Xtreme
-
-#Bootloader related
-TARGET_NO_BOOTLOADER := true
-TARGET_BOARD_PLATFORM := mt6796
 TARGET_BOOTLOADER_BOARD_NAME := mt6795
 
-#Kernel related
+# Kernel
+TARGET_USES_64_BIT_BINDER := true
+TARGET_IS_64_BIT := true
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
-#BOARD_KERNEL_BASE := 0x40078000
-#BOARD_KERNEL_BASE := 0x4dffff00
+BOARD_KERNEL_BASE := 0x40078000
 BOARD_KERNEL_PAGESIZE := 2048
-TARGET_MKIMAGE := $(LOCAL_PATH)/mkimage
-#BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
-BOARD_MKBOOTIMG_ARGS := --base 0x40078000 --pagesize 2048 --kernel_offset 0x00008000 --ramdisk_offset 0x03f88000 --second_offset 0x00e88000 --tags_offset 0x0df88000 --board 1442413460
+BOARD_MKBOOTIMG_ARGS := --base 0x40078000 --pagesize 2048 --kernel_offset 0x00008000 --ramdisk_offset 0x03f88000 --second_offset 0x00e88000 --tags_offset 0x0df88000 --board Bemolx
+
+# Prebuilt kernel
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/kernel
-#BOARD_CUSTOM_BOOTIMG := true
-#TARGET_USE_BUILT_BOOTIMAGE := true
+# Building kernel from source
+#TARGET_KERNEL_SOURCE := kernel/allview/x2xtreme
+#TARGET_KERNEL_ARCH := arm64
+#TARGET_KERNEL_HEADER_ARCH := arm64
+#TARGET_KERNEL_CONFIG := cyanogenmod_x2xtreme_defconfig
+#TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+#MTK_APPENDED_DTB_SUPPORT := yes
+#BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 
-# Display
-USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := $(LOCAL_PATH)/configs/egl.cfg
-TARGET_SCREEN_HEIGHT := 2560
-TARGET_SCREEN_WIDTH := 1440
-BOARD_EGL_WORKAROUND_BUG_10194508 := true
+TARGET_KMODULES := true
 
-#Partitions - before building check in your device's /proc/mtd  !!!
+# make_ext4fs requires numbers in dec format
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3011510272
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 58954612736
+BOARD_CACHEIMAGE_PARTITION_SIZE := 444596224
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-#MediaTek Hardware
-BOARD_HAS_MTK_HARDWARE := true
-MTK_HARDWARE := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+TARGET_USERIMAGES_USE_EXT4 := true
 
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
+
+# TWRP stuff
+TW_THEME := portrait_hdpi
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
+BOARD_HAS_NO_SELECT_BUTTON := true
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
+TW_THEME := portrait_hdpi
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_MAX_BRIGHTNESS := 255
+BOARD_SUPPRESS_SECURE_ERASE := true
+TW_INCLUDE_CRYPTO := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/mtk-msdc.0/by-name/userdata" # i think this isn't used anymore
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data =ordered"
+TW_NO_USB_STORAGE := true
+BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
+TARGET_DISABLE_TRIPLE_BUFFERING := false
+# CWM
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_RECOVERY_SWIPE := true
 BOARD_SUPPRESS_EMMC_WIPE := true
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery.fstab
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
+TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/recovery.fstab
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 TARGET_USERIMAGES_USE_EXT4 := true

@@ -31,6 +31,9 @@ TARGET_CPU_CORTEX_A53 := true
 
 TARGET_BOOTLOADER_BOARD_NAME := mt6795
 
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
 # Kernel
 TARGET_USES_64_BIT_BINDER := true
 TARGET_IS_64_BIT := true
